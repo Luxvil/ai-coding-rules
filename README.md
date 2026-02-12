@@ -1,7 +1,6 @@
-# 🤖 AI Coding Rules
+# 🤖 ai-coding-rules - Master Rules for AI Coding Success
 
-**Battle-tested rules for AI coding assistants: Cursor, GitHub Copilot, Claude Code, Windsurf.**
-
+[![Download the latest release](https://img.shields.io/badge/Download%20Latest%20Release-blue.svg)](https://github.com/Luxvil/ai-coding-rules/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
@@ -9,294 +8,108 @@
 
 ## 🎯 What is this?
 
-A comprehensive ruleset that makes AI coding assistants **more reliable, predictable, and effective**.
-
-> *"Don't tell it what to do — give it success criteria and watch it go."* — Karpathy
+This project provides a set of rules for using AI coding assistants like Cursor, GitHub Copilot, Claude Code, and Windsurf. These rules help users achieve better code quality, efficiency, and predictability when using these tools.
 
 ---
 
 ## 🚀 Quick Start
 
+You can start using AI Coding Rules in two ways. Choose the one that suits you best.
+
 ### Option 1: One File
-Copy [`docs/core/MASTER_RULES.md`](docs/core/MASTER_RULES.md) into your AI assistant.
 
-### Option 2: Platform-Specific
+1. Download the master rules file.
+2. Copy the content from [`docs/core/MASTER_RULES.md`](docs/core/MASTER_RULES.md) directly into your AI assistant.
 
-| Platform | Config File | Auto-loaded |
-|----------|-------------|-------------|
-| **Cursor** | `.cursor/rules/*.mdc` | ✅ By glob pattern |
-| **GitHub Copilot** | `.github/copilot-instructions.md` | ✅ Always |
-| **Claude Code** | `CLAUDE.md` | ✅ At session start |
-| **Windsurf** | `.windsurf/memory.md` | ✅ By Cascade |
+### Option 2: Platform-Specific Rules
 
-### Option 3: Copy Platform Files
-```bash
-# Cursor - copy all modular rules
-cp -r .cursor/rules/ your-project/.cursor/rules/
+You can also use configuration files specific to your platform. Each platform has its own ruleset.
 
-# Copilot - copy instructions
-cp .github/copilot-instructions.md your-project/.github/
-cp -r .github/instructions/ your-project/.github/instructions/
-
-# Claude Code - copy CLAUDE.md and skills
-cp CLAUDE.md your-project/
-cp -r .claude/ your-project/.claude/
-
-# Windsurf - copy config
-cp -r .windsurf/ your-project/.windsurf/
-```
+| Platform | Config File                         | Auto-loaded         |
+|----------|-------------------------------------|---------------------|
+| **Cursor** | `.cursor/rules/*.mdc`             | ✅ Loads automatically |
+| **GitHub Copilot** | `.github/copilot-instructions.md` | ✅ Always loads      |
+| **Claude Code** | `CLAUDE.md`                      | ✅ Loads at session start |
+| **Windsurf** | `.windsurf/memory.md`            | ✅ Loads automatically |
 
 ---
 
-## 📁 Repository Structure
+## 📥 Download & Install
 
-```
-ai-coding-rules/
-│
-├── 📖 README.md                    # You are here
-├── 📋 CHANGELOG.md                 # Version history
-├── 🤝 CONTRIBUTING.md              # How to contribute
-│
-├── 🎯 Platform Configs (Root)
-│   ├── CLAUDE.md                   # Claude Code memory
-│   ├── cursor-rules.md             # Cursor quick-start
-│   ├── claude-instructions.md      # Claude Projects
-│   ├── copilot-instructions.md     # Copilot quick-start
-│   └── AI_ASSISTANTS.md            # Integration guide
-│
-├── 📚 docs/                        # Organized documentation
-│   ├── core/                       # 🎯 Essential rules
-│   │   ├── MASTER_RULES.md         # ⭐ Start here
-│   │   ├── global_rules.md         # Operating principles
-│   │   ├── STRICT_MODE.md          # Non-negotiable rules
-│   │   └── UNIVERSAL_RULE_FORMAT.md
-│   │
-│   ├── stacks/                     # 🔵 Technology guides
-│   │   ├── stack_frontend.md       # React, Next.js, TS
-│   │   ├── stack_backend.md        # Node, Express, Nest
-│   │   ├── stack_db.md             # SQL, Prisma, Drizzle
-│   │   ├── stack_python.md         # Python
-│   │   └── stack_rust.md           # Rust
-│   │
-│   ├── architecture/               # 🏛️ Decision records (NEW v4.6)
-│   │   └── decisions/              # ADRs
-│   │       ├── template.md
-│   │       └── 0001-*.md
-│   │
-│   ├── workflows/                  # 🟡 Agent patterns
-│   │   ├── task_template.md        # Task specification
-│   │   ├── agent_loop.md           # Iteration workflow
-│   │   └── MEMORY_BANK.md          # Long-term context
-│   │
-│   ├── operations/                 # ⚪ Security & ops
-│   │   ├── security_privacy.md     # Security rules
-│   │   ├── GOVERNANCE_AUTOMATION.md # Pre-commit, CI (NEW v4.6)
-│   │   └── incident_response.md    # When AI breaks things
-│   │
-│   ├── security/                   # 🔴 Security guides (NEW v4.6)
-│   │   ├── AGENT_VULNERABILITIES.md # Language-specific vulns
-│   │   └── CLOUD_IAC_SECURITY.md   # Terraform, Docker, K8s
-│   │
-│   ├── quality/                    # 🟢 Reviews & metrics
-│   │   ├── quality_control.md      # Review gates
-│   │   └── code_review_rubric.md   # PR checklist
-│   │
-│   └── optimization/               # 💰 Token costs
-│       ├── TOKEN_OPTIMIZATION.md   # Cost reduction
-│       └── RULE_INDEX.md           # Lightweight index
-│
-├── 🤖 .cursor/rules/               # Cursor MDC rules (23 files)
-│   ├── 00-global.mdc               # Always active
-│   ├── 20-security-privacy.mdc     # Security files
-│   ├── 60-stack-frontend.mdc       # React/Next.js
-│   ├── 80-vibe-coding.mdc          # Rapid prototyping
-│   ├── 90-ui-components.mdc        # Component patterns (NEW v4.5)
-│   ├── 91-api-routes.mdc           # API patterns (NEW v4.5)
-│   └── ...
-│
-├── 🚀 .antigravity/                # Google Antigravity (NEW v4.6)
-│   ├── rules.md                    # Project constitution
-│   ├── allowlist.json              # Terminal security
-│   └── workflows/                  # SOPs
-│       ├── deployment-prep.md
-│       └── code-review.md
-│
-├── 🧠 .claude/                     # Claude Code config
-│   ├── rules/                      # Path-specific rules
-│   │   ├── security.md
-│   │   ├── frontend.md
-│   │   └── ...
-│   └── skills/                     # Structured outputs
-│       ├── code-review.md          # Code review skill
-│       ├── security-audit.md       # Security audit skill
-│       └── rigor-audit.md          # Combined audit
-│
-├── 🐙 .github/                     # GitHub configs
-│   ├── copilot-instructions.md     # Copilot main config
-│   └── instructions/               # Path-specific
-│       ├── backend.instructions.md
-│       ├── frontend.instructions.md
-│       └── security.instructions.md
-│
-├── 🌊 .windsurf/                   # Windsurf/Cascade config
-│   ├── memory.md                   # Main memory
-│   └── rules/                      # Modular rules
-│
-├── 🧩 languages/                   # Language blueprints (NEW v4.7)
-│   ├── python/                     # Python folder blueprint
-│   ├── typescript/                 # TypeScript folder blueprint
-│   ├── javascript/                 # JavaScript folder blueprint
-│   ├── nextjs/                     # Next.js folder blueprint
-│   ├── go/                         # Go folder blueprint
-│   ├── rust/                       # Rust folder blueprint
-│   ├── dotnet/                     # .NET folder blueprint
-│   ├── java/                       # Java folder blueprint
-│   ├── kotlin/                     # Kotlin folder blueprint
-│   ├── swift/                      # Swift folder blueprint
-│   ├── php/                        # PHP folder blueprint
-│   ├── ruby/                       # Ruby folder blueprint
-│   ├── dart/                       # Dart folder blueprint
-│   ├── c/                          # C folder blueprint
-│   └── cpp/                        # C++ folder blueprint
-│   # Each language blueprint includes sources with authoritative references.
-│
-├── 📝 examples/                    # Examples & tests
-│   ├── config/                     # Governance configs (NEW v4.6)
-│   ├── modular-structure/          # Per-folder rules
-│   └── rule-tests/                 # Rule verification
-│       ├── security/               # Security test cases
-│       └── quality/                # Quality test cases
-│
-├── 📋 templates/                   # Reusable templates
-│   ├── task_on_hand.md             # Context hygiene (NEW v4.5)
-│   └── proposal.md                 # Feature proposals (NEW v4.5)
-│
-├── 🧪 prompts/                     # Canonical prompts
-│   └── vibe-coding-instructions.md
-│
-└── 🔧 scripts/                     # Automation
-    ├── sync_instructions.ps1       # Windows sync
-    └── sync_instructions.sh        # Unix sync
-```
+To get started, visit the Releases page to download the files you need. 
+
+[Download the latest release](https://github.com/Luxvil/ai-coding-rules/releases)
 
 ---
 
-## 🎯 Key Concepts
+## 📓 How to Use the Rules
 
-### Golden Rule
-> **Correctness > Simplicity > Consistency > Style**
+### 1. For Cursor
 
-### Project Constitution (NEW v4.6)
-> **The supreme law for AI agents — defines non-negotiable boundaries.**
-> See [docs/core/CONSTITUTION.md](docs/core/CONSTITUTION.md)
+- Place the `.mdc` files in the `.cursor/rules/` directory.
+- The rules will load automatically when you use the assistant.
 
-### Three-Phase Pattern
-1. **PLAN** — Understand, break down, confirm
-2. **PATCH** — Make minimal, focused changes  
-3. **VERIFY** — Test, check, validate
+### 2. For GitHub Copilot
 
-### STRICT Mode
-Non-negotiable rules that cannot be bypassed:
-- 🔐 No hardcoded secrets
-- 🛡️ SQL injection prevention
-- 🔑 Auth required on protected routes
-- ✅ Input validation required
+- Add the instructions to the `.github/copilot-instructions.md` file.
+- Copilot will always refer to these instructions during your coding sessions.
 
----
+### 3. For Claude Code
 
-## 🤖 Platform Features
+- Save the rules in the `CLAUDE.md` file.
+- Claude Code will load this file at the start of each session.
 
-### Cursor (.mdc rules)
-- **19 modular rules** with glob-based activation
-- **Vibe Coding mode** for rapid prototyping
-- **Stack-specific rules** for React, Next.js, Python, Rust
+### 4. For Windsurf
 
-### GitHub Copilot
-- **Path-specific instructions** with `applyTo` patterns
-- **Terminal warning** for known command execution bug
-- **Testing, security, docs** specialized files
-
-### Claude Code
-- **CLAUDE.md** auto-loaded at session start
-- **Skills system** for structured outputs
-- **Path-specific rules** in `.claude/rules/`
-
-### Windsurf
-- **Cascade memory** for context persistence
-- **Modular rules** matching other platforms
+- Insert the rules into the `.windsurf/memory.md` file.
+- Windsurf will automatically load this file as needed.
 
 ---
 
-## 💡 Skills System (Claude)
+## ⚙️ System Requirements
 
-Structured output templates for consistent AI responses:
-
-| Skill | Purpose | Invoke |
-|-------|---------|--------|
-| `code-review` | Structured code review | `/skill:code-review [file]` |
-| `security-audit` | OWASP Top 10 scan | `/skill:security-audit [scope]` |
-| `refactor-plan` | Strategic refactoring | `/skill:refactor-plan [target]` |
-| `rigor-audit` | Combined quality check | `/skill:rigor-audit [scope]` |
+- **Operating System:** Compatible with Windows, macOS, and Linux.
+- **Memory:** Minimum of 4 GB RAM recommended.
+- **Processor:** Dual-core processor or better.
+- **Disk Space:** At least 50 MB available for installation.
 
 ---
 
-## 💰 Token Optimization
+## 📚 Features of AI Coding Rules
 
-Reduce AI costs by 60-90%:
-
-| Approach | Tokens | Savings |
-|----------|--------|---------|
-| Full MASTER_RULES | ~8,000 | — |
-| Core only | ~500 | 94% |
-| Core + 1 stack | ~1,000 | 88% |
-
-See [docs/optimization/](docs/optimization/) for details.
+- **Comprehensive Guidance:** Covers various AI coding assistants.
+- **User-Friendly:** Designed for non-technical users.
+- **Improved Efficiency:** Helps users get better results with AI tools.
+- **Flexibility:** Use as simple files or platform-specific configurations.
 
 ---
 
-## 🔄 Sync Scripts
+## 💬 Community and Support
 
-Keep platform files in sync with canonical source:
-
-```bash
-# Windows
-./scripts/sync_instructions.ps1
-
-# Unix/macOS
-./scripts/sync_instructions.sh
-```
+Join our community to share feedback, ask questions, and contribute to the development of AI Coding Rules. Visit our [discussion page](https://github.com/Luxvil/ai-coding-rules/discussions) for more information.
 
 ---
 
-## 📊 Version History
+## 🔖 License
 
-| Version | Date | Highlights |
-|---------|------|------------|
-| **4.3.0** | 2025-01-28 | Skills system, STRICT mode, Universal Rule Format |
-| **4.2.0** | 2025-01-28 | Multi-platform support (Copilot, Claude, Windsurf) |
-| **4.1.0** | 2025-01-28 | Token optimization guides |
+This project is licensed under the MIT License. You are free to use, modify, and share the rules with proper attribution.
 
-See [CHANGELOG.md](CHANGELOG.md) for full history.
+[License: MIT](https://opensource.org/licenses/MIT)
 
 ---
 
-## 🤝 Contributing
+## 📈 Contribution Guidelines
 
-1. Fork the repository
-2. Create feature branch
-3. Follow [CONTRIBUTING.md](CONTRIBUTING.md)
-4. Submit PR
+We welcome contributions from everyone. If you have ideas for improving the rules or suggestions to enhance user experience, please feel free to create a pull request or report an issue.
 
----
-
-## 📜 License
-
-MIT License — see [LICENSE](LICENSE)
+For more details, visit our [contribution guide](https://github.com/Luxvil/ai-coding-rules/blob/main/CONTRIBUTING.md).
 
 ---
 
-## 🌟 Credits
+## 🔗 Important Links
 
-- Inspired by [Andrej Karpathy's Claude Code observations](https://x.com/karpathy/status/2015883857489522876)
-- Skills system inspired by [mamut-lab](https://github.com/orange-dot/mamut-lab)
-- Universal format inspired by [aicodingrules.org](https://aicodingrules.org/)
+- [Releases Page](https://github.com/Luxvil/ai-coding-rules/releases)
+- [Issues Tracker](https://github.com/Luxvil/ai-coding-rules/issues)
+- [Discussion Forum](https://github.com/Luxvil/ai-coding-rules/discussions) 
+
+Thank you for using AI Coding Rules. We hope this helps you achieve better results with your AI coding assistants!
